@@ -1,0 +1,5 @@
+---
+dotfiles_user: "{{ lookup('env', 'USER') }}"
+dotfiles_repo: ''
+dotfiles_repo_dest: myconfig
+dotfiles_links: []

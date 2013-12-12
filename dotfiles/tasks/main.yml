@@ -1,0 +1,7 @@
+---
+- include: dotfiles.yml
+  sudo_user: "{{ dotfiles_user }}"
+  when: dotfiles_repo and dotfiles_links and dotfiles_run is not defined
+
+- set_fact: dotfiles_run=true
+  when: dotfiles_run is not defined

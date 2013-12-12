@@ -1,0 +1,36 @@
+---
+- name: Make sure user has an ssh config dir
+  file: path=/home/{{ dotfiles_user }}/.ssh
+        state=directory
+        owner={{ dotfiles_user }}
+        group={{ dotfiles_user }}
+        mode=0700
+
+- name: Make sure user has an ssh known_hosts file
+  file: path=/home/{{ dotfiles_user }}/.ssh/known_hosts
+        state=touch
+        owner={{ dotfiles_user }}
+        group={{ dotfiles_user }}
+        mode=0600
+  register: touchout
+  changed_when: touchout.size == 0
+
+- name: Set github known_hosts
+  lineinfile: dest=/home/{{ dotfiles_user }}/.ssh/known_hosts
+              state=present
+              line='{{item}}'
+  with_items: github_host_keys
+  when: "'github' in dotfiles_repo"
+
+- name: Clone dotfiles repo
+  git: repo={{ dotfiles_repo }}
+       dest=/home/{{ dotfiles_user }}/{{ dotfiles_repo_dest }}
+
+- name: Link dotfiles
+  file: src=/home/{{ dotfiles_user }}/{{ dotfiles_repo_dest }}/{{ item.src }}
+        dest=/home/{{ dotfiles_user }}/{{ item.dest }}
+        state=link
+        force=yes
+  with_items: dotfiles_links
+  tags:
+    - linkem
