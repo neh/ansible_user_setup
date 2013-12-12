@@ -1,0 +1,13 @@
+---
+- name: Install vim and related packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - vim-athena
+    - ack-grep
+    - exuberant-ctags
+
+- include: vundle.yml
+  sudo_user: "{{ dotfiles_user }}"
+  when: use_vundle
+  tags:
+    - vundle

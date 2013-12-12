@@ -1,0 +1,14 @@
+---
+- name: Install vundle
+  git: repo=https://github.com/gmarik/vundle.git
+       dest=/home/{{ dotfiles_user }}/.vim/bundle/vundle
+
+- name: Clean bundles
+  command: vim -u /home/{{ dotfiles_user }}/.vim/{{ vundle_config }} +BundleClean! +qall chdir=/home/{{ dotfiles_user }}
+  register: clean_out
+  changed_when: "'Removing bundles' in clean_out.stdout"
+
+- name: Install bundles
+  command: vim -u /home/{{ dotfiles_user }}/.vim/{{ vundle_config }} +BundleInstall +qall chdir=/home/{{ dotfiles_user }}
+  register: install_out
+  changed_when: "'\\r\\n+' in install_out.stdout"
