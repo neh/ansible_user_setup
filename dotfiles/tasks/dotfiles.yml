@@ -34,3 +34,13 @@
   with_items: dotfiles_links
   tags:
     - linkem
+
+
+- name: Check for keybindings for less
+  stat: path=/home/{{ dotfiles_user }}/{{ dotfiles_repo_dest }}/lesskey
+  register: lesskey_stat
+
+- name: Set keybindings for less
+  command: lesskey {{ dotfiles_repo_dest }}/lesskey chdir=/home/{{ dotfiles_user }}
+  when: lesskey_stat.stat.exists
+  changed_when: false
