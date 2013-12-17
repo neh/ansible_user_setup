@@ -1,0 +1,11 @@
+---
+- name: Install zsh and related packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+    - zsh
+
+- name: Set user shell to zsh
+  user: name={{ dotfiles_user }}
+        shell=/usr/bin/zsh
+  when: user_settings[dotfiles_user].use_zsh
+
