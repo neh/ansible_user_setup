@@ -11,3 +11,19 @@
   when: use_vundle
   tags:
     - vundle
+
+- name: Check vim version
+  command: vim --version
+  register: vim_version_info
+  changed_when: false
+
+
+- name: Check for YouCompleteMe
+  command: /usr/bin/stat /home/{{ dotfiles_user }}/.vim/bundle/YouCompleteMe
+  register: check_you_complete_me
+  changed_when: false
+  failed_when: false
+
+- include: you_complete_me.yml
+  sudo_user: "{{ dotfiles_user }}"
+  when: check_you_complete_me.rc == 0 and '7.4' in vim_version_info.stdout

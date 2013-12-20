@@ -1,0 +1,3 @@
+---
+- name: Compile YouCompleteMe
+  command: install.sh chdir=/home/{{ dotfiles_user }}/.vim/bundle/YouCompleteMe
