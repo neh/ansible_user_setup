@@ -1,7 +1,7 @@
 ---
 - include: dotfiles.yml
   sudo_user: "{{ dotfiles_user }}"
-  when: user_settings[dotfiles_user].dotfiles_repo and user_settings[dotfiles_user].dotfiles_links and dotfiles_run_{{ dotfiles_user }} is not defined
+  when: user_settings[dotfiles_user].dotfiles_repo and (user_settings[dotfiles_user].dotfiles_links or user_settings[dotfiles_user].dotfiles_cmd) and dotfiles_run_{{ dotfiles_user }} is not defined
   tags:
     - dotfiles
 
