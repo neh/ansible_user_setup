@@ -24,6 +24,14 @@
   changed_when: false
   failed_when: false
 
+- name: Install YouCompleteMe dependencies
+  apt: pkg={{ item }} state=installed
+  when: check_you_complete_me.rc == 0 and '7.4' in vim_version_info.stdout
+  with_items:
+    - cmake
+    - build-essential
+    - python-dev
+
 - include: you_complete_me.yml
   sudo_user: "{{ dotfiles_user }}"
   when: check_you_complete_me.rc == 0 and '7.4' in vim_version_info.stdout
