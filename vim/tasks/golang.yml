@@ -1,0 +1,11 @@
+---
+- name: Make gotools directory
+  file: path=/home/{{ dotfiles_user }}/src/gotools
+        state=directory
+
+- name: Install gocode
+  command: go get -u github.com/nsf/gocode
+  environment:
+    GOPATH: /home/{{ dotfiles_user }}/src/gotools
+    GOBIN: /home/{{ dotfiles_user }}/bin
+    PATH: /usr/local/go/bin:{{ ansible_env.PATH }}
