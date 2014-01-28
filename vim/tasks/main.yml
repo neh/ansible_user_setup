@@ -1,4 +1,9 @@
 ---
+- include: golang.yml
+  sudo_user: "{{ dotfiles_user }}"
+  tags:
+    - vim_golang
+
 - name: Install vim and related packages
   apt: pkg={{ item }} state=installed
   with_items:
@@ -35,8 +40,3 @@
 - include: you_complete_me.yml
   sudo_user: "{{ dotfiles_user }}"
   when: check_you_complete_me.rc == 0 and '7.4' in vim_version_info.stdout
-
-- include: golang.yml
-  sudo_user: "{{ dotfiles_user }}"
-  tags:
-    - vim_golang
