@@ -1,15 +1,16 @@
 ---
-- include: golang.yml
-  sudo_user: "{{ dotfiles_user }}"
-  tags:
-    - vim_golang
-
 - name: Install vim and related packages
   apt: pkg={{ item }} state=installed
   with_items:
     - vim-athena
     - ack-grep
     - exuberant-ctags
+    - mercurial
+
+- include: golang.yml
+  sudo_user: "{{ dotfiles_user }}"
+  tags:
+    - vim_golang
 
 - include: vundle.yml
   sudo_user: "{{ dotfiles_user }}"

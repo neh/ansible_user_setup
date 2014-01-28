@@ -9,3 +9,10 @@
     GOPATH: /home/{{ dotfiles_user }}/src/gotools
     GOBIN: /home/{{ dotfiles_user }}/bin
     PATH: /usr/local/go/bin:{{ ansible_env.PATH }}
+
+- name: Install goimports
+  command: go get -u code.google.com/p/go.tools/cmd/goimports
+  environment:
+    GOPATH: /home/{{ dotfiles_user }}/src/gotools
+    GOBIN: /home/{{ dotfiles_user }}/bin
+    PATH: /usr/local/go/bin:{{ ansible_env.PATH }}
