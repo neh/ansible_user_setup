@@ -1,3 +1,4 @@
 ---
 dependencies:
   - { role: user_setup/dotfiles }
+  - { role: golang, when: use_golang }

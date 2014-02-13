@@ -9,6 +9,7 @@
 
 - include: golang.yml
   sudo_user: "{{ dotfiles_user }}"
+  when: use_golang
   tags:
     - vim_golang
 
