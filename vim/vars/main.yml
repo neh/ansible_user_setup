@@ -3,3 +3,4 @@ use_vundle: yes
 vundle_config: bundles.vim
 
 use_golang: no
+use_js: no

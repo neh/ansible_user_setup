@@ -1,0 +1,10 @@
+---
+- name: Find npm
+  shell: /bin/bash -c ". /home/{{ dotfiles_user }}/.nvm/nvm.sh && which npm"
+  #shell: /bin/bash -c ". {{ nvm_user_path }}/nvm.sh && which npm"
+  register: npmloc
+
+- name: Install tern
+  npm: path=/home/{{ dotfiles_user }}/.vim/bundle/tern_for_vim
+       executable={{ npmloc.stdout }}
+       state=present

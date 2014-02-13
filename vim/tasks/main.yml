@@ -42,3 +42,9 @@
 - include: you_complete_me.yml
   sudo_user: "{{ dotfiles_user }}"
   when: check_you_complete_me.rc == 0 and '7.4' in vim_version_info.stdout
+
+- include: js.yml
+  sudo_user: "{{ dotfiles_user }}"
+  when: use_js
+  tags:
+    - vim_js
