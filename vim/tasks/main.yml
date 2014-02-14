@@ -43,6 +43,23 @@
   sudo_user: "{{ dotfiles_user }}"
   when: check_you_complete_me.rc == 0 and '7.4' in vim_version_info.stdout
 
+
+- name: Check for ctrlp cmatcher
+  command: /usr/bin/stat /home/{{ dotfiles_user }}/.vim/bundle/ctrlp-cmatcher
+  register: check_ctrlp_cmatcher
+  changed_when: false
+  failed_when: false
+
+- name: Install dependencies
+  apt: pkg=python-dev state=installed
+  when: check_ctrlp_cmatcher.rc == 0
+
+- name: Compile ctrlp cmatcher
+  command: ./install_linux.sh
+           chdir=/home/{{ dotfiles_user }}/.vim/bundle/ctrlp-cmatcher
+           creates=/home/{{ dotfiles_user }}/.vim/bundle/ctrlp-cmatcher/autoload/fuzzycomt.so
+  when: check_ctrlp_cmatcher.rc == 0
+
 - include: js.yml
   sudo_user: "{{ dotfiles_user }}"
   when: use_js
