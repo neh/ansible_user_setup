@@ -1,0 +1,3 @@
+---
+- fail: msg="This role handles a max of 10 users."
+  when: "10 < user_setup_users|length"
