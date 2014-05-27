@@ -2,4 +2,4 @@
 dependencies:
   - { role: user_setup/dotfiles }
   - { role: golang, when: use_golang }
-  - { role: node, nvm_user_install: true, nvm_user: "{{ dotfiles_user }}", when: use_js }
+  - { role: nodejs_nvm, nvm_user_install: true, nvm_user: "{{ dotfiles_user }}", when: use_js }
