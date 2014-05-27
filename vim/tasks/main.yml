@@ -41,7 +41,7 @@
 
 - include: you_complete_me.yml
   sudo_user: "{{ dotfiles_user }}"
-  when: check_you_complete_me.rc == 0 and '7.4' in vim_version_info.stdout
+  when: check_you_complete_me is defined and check_you_complete_me.rc == 0 and '7.4' in vim_version_info.stdout
 
 
 - name: Check for ctrlp cmatcher
