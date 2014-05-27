@@ -55,7 +55,7 @@
   when: check_ctrlp_cmatcher.rc == 0
 
 - name: Compile ctrlp cmatcher
-  command: ./install_linux.sh
+  command: ./install.sh
            chdir=/home/{{ dotfiles_user }}/.vim/bundle/ctrlp-cmatcher
            creates=/home/{{ dotfiles_user }}/.vim/bundle/ctrlp-cmatcher/autoload/fuzzycomt.so
   when: check_ctrlp_cmatcher.rc == 0
