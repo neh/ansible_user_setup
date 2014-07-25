@@ -2,4 +2,4 @@
 - name: Compile YouCompleteMe
   command: ./install.sh --clang-completer
            chdir=/home/{{ dotfiles_user }}/.vim/bundle/YouCompleteMe
-           creates=/home/{{ dotfiles_user }}/.vim/bundle/YouCompleteMe/python/ycm_core.so
+           creates=/home/{{ dotfiles_user }}/.vim/bundle/YouCompleteMe/third_party/ycmd/ycm_core.so
