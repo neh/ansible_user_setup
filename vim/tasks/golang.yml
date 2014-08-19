@@ -30,3 +30,24 @@
     GOPATH: /home/{{ dotfiles_user }}/src/gotools
     GOBIN: /home/{{ dotfiles_user }}/bin
     PATH: /usr/local/go/bin:{{ ansible_env.PATH }}
+
+- name: Install golint
+  command: go get -u github.com/golang/lint/golint
+  environment:
+    GOPATH: /home/{{ dotfiles_user }}/src/gotools
+    GOBIN: /home/{{ dotfiles_user }}/bin
+    PATH: /usr/local/go/bin:{{ ansible_env.PATH }}
+
+- name: Install errcheck
+  command: go get -u github.com/kisielk/errcheck
+  environment:
+    GOPATH: /home/{{ dotfiles_user }}/src/gotools
+    GOBIN: /home/{{ dotfiles_user }}/bin
+    PATH: /usr/local/go/bin:{{ ansible_env.PATH }}
+
+- name: Install oracle
+  command: go get -u code.google.com/p/go.tools/cmd/oracle
+  environment:
+    GOPATH: /home/{{ dotfiles_user }}/src/gotools
+    GOBIN: /home/{{ dotfiles_user }}/bin
+    PATH: /usr/local/go/bin:{{ ansible_env.PATH }}
